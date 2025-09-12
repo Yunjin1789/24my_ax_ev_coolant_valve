@@ -1,0 +1,466 @@
+<?xml version="1.0"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="Panel" Children="Controls" ControlName="HMC_LINRGB">
+    <Object Type="Vector.CANalyzer.Panels.Design.VectorTabControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="VectorTabControl1" Children="Controls" ControlName="HMCRGB">
+      <Object Type="Vector.CANalyzer.Panels.Design.VectorTabPage, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="VectorTabPage1" Children="Controls" ControlName="HMCRGB">
+        <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl10" Children="Controls" ControlName="Check Box">
+          <Property Name="Name">CheckBoxControl10</Property>
+          <Property Name="Size">81, 17</Property>
+          <Property Name="Location">266, 321</Property>
+          <Property Name="Text">MLMM_SOH</Property>
+          <Property Name="BackColor">White</Property>
+          <Property Name="SymbolConfiguration">8;2;HMC_LINRGB;MLMM0;MLMM0_Comm1_MLM;LIN_MLMM0SOH_MLM;1;LIN;;-1;;;;;;0</Property>
+          <Property Name="TabIndex">1</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl9" Children="Controls" ControlName="Check Box">
+          <Property Name="Name">CheckBoxControl9</Property>
+          <Property Name="Size">83, 17</Property>
+          <Property Name="Location">33, 321</Property>
+          <Property Name="Text">NoFadeInOut</Property>
+          <Property Name="BackColor">White</Property>
+          <Property Name="SymbolConfiguration">8;2;HMC_LINRGB;MLMM0;MLMM0_Comm1_MLM;LIN_NoFadeInOutFlag_MLM;1;LIN;;-1;;;;;;0</Property>
+          <Property Name="TabIndex">1</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl3" Children="Controls" ControlName="Group Box 3">
+          <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl6" Children="Controls" ControlName="Static Text 2">
+            <Property Name="Name">StaticTextControl6</Property>
+            <Property Name="Size">56, 13</Property>
+            <Property Name="Location">148, 28</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="Text">Fade out</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl3" Children="Controls" ControlName="Static Text 2">
+            <Property Name="Name">StaticTextControl3</Property>
+            <Property Name="Size">57, 13</Property>
+            <Property Name="Location">11, 28</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="Text">Fade in</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.NumericUpDownControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="NumericUpDownControl3" Children="Controls" ControlName="Numeric Up/Down">
+            <Property Name="Name">NumericUpDownControl3</Property>
+            <Property Name="Size">49, 19</Property>
+            <Property Name="Location">208, 24</Property>
+            <Property Name="DecimalPlaces">1</Property>
+            <Property Name="Increment">0.01</Property>
+            <Property Name="SymbolConfiguration">8;2;HMC_LINRGB;MLMM0;MLMM0_Comm1_MLM;LIN_FadeOutTime_MLM;1;LIN;;-1;;;;;;0</Property>
+            <Property Name="TabIndex">2</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.NumericUpDownControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="NumericUpDownControl2" Children="Controls" ControlName="Numeric Up/Down">
+            <Property Name="Name">NumericUpDownControl2</Property>
+            <Property Name="Size">49, 19</Property>
+            <Property Name="Location">66, 26</Property>
+            <Property Name="DecimalPlaces">1</Property>
+            <Property Name="Increment">0.01</Property>
+            <Property Name="SymbolConfiguration">8;2;HMC_LINRGB;MLMM0;MLMM0_Comm1_MLM;LIN_FadeInTime_MLM;1;LIN;;-1;;;;;;0</Property>
+            <Property Name="TabIndex">2</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl5" Children="Controls" ControlName="Static Text">
+            <Property Name="Name">StaticTextControl5</Property>
+            <Property Name="Size">31, 13</Property>
+            <Property Name="Location">283, 28</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="Text">sec</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl4" Children="Controls" ControlName="Static Text">
+            <Property Name="Name">StaticTextControl4</Property>
+            <Property Name="Size">24, 13</Property>
+            <Property Name="Location">125, 28</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="Text">sec</Property>
+          </Object>
+          <Property Name="Name">GroupBoxControl3</Property>
+          <Property Name="Size">318, 56</Property>
+          <Property Name="Location">31, 258</Property>
+          <Property Name="BackColor">White</Property>
+          <Property Name="Text">Fade time</Property>
+          <Property Name="TabIndex">3</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl2" Children="Controls" ControlName="Group Box 2">
+          <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl8" Children="Controls" ControlName="Check Box">
+            <Property Name="Name">CheckBoxControl8</Property>
+            <Property Name="Size">74, 18</Property>
+            <Property Name="Location">83, 89</Property>
+            <Property Name="Text">Flag 8</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="SymbolConfiguration">8;2;HMC_LINRGB;MLMM0;MLMM0_Comm1_MLM;LIN_SlaveFlag8_MLM;1;LIN;;-1;;;;;;0</Property>
+            <Property Name="TabIndex">0</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl4" Children="Controls" ControlName="Check Box">
+            <Property Name="Name">CheckBoxControl4</Property>
+            <Property Name="Size">74, 18</Property>
+            <Property Name="Location">13, 87</Property>
+            <Property Name="Text">Flag 4</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="SymbolConfiguration">8;2;HMC_LINRGB;MLMM0;MLMM0_Comm1_MLM;LIN_SlaveFlag4_MLM;1;LIN;;-1;;;;;;0</Property>
+            <Property Name="TabIndex">0</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl7" Children="Controls" ControlName="Check Box">
+            <Property Name="Name">CheckBoxControl7</Property>
+            <Property Name="Size">74, 18</Property>
+            <Property Name="Location">83, 66</Property>
+            <Property Name="Text">Flag 7</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="SymbolConfiguration">8;2;HMC_LINRGB;MLMM0;MLMM0_Comm1_MLM;LIN_SlaveFlag7_MLM;1;LIN;;-1;;;;;;0</Property>
+            <Property Name="TabIndex">0</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl6" Children="Controls" ControlName="Check Box">
+            <Property Name="Name">CheckBoxControl6</Property>
+            <Property Name="Size">74, 18</Property>
+            <Property Name="Location">83, 42</Property>
+            <Property Name="Text">Flag6</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="SymbolConfiguration">8;2;HMC_LINRGB;MLMM0;MLMM0_Comm1_MLM;LIN_SlaveFlag6_MLM;1;LIN;;-1;;;;;;0</Property>
+            <Property Name="TabIndex">0</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl3" Children="Controls" ControlName="Check Box">
+            <Property Name="Name">CheckBoxControl3</Property>
+            <Property Name="Size">74, 18</Property>
+            <Property Name="Location">13, 64</Property>
+            <Property Name="Text">Flag 3</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="SymbolConfiguration">8;2;HMC_LINRGB;MLMM0;MLMM0_Comm1_MLM;LIN_SlaveFlag3_MLM;1;LIN;;-1;;;;;;0</Property>
+            <Property Name="TabIndex">0</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl2" Children="Controls" ControlName="Check Box">
+            <Property Name="Name">CheckBoxControl2</Property>
+            <Property Name="Size">74, 18</Property>
+            <Property Name="Location">13, 41</Property>
+            <Property Name="Text">Flag 2</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="SymbolConfiguration">8;2;HMC_LINRGB;MLMM0;MLMM0_Comm1_MLM;LIN_SlaveFlag2_MLM;1;LIN;;-1;;;;;;0</Property>
+            <Property Name="TabIndex">0</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl5" Children="Controls" ControlName="Check Box">
+            <Property Name="Name">CheckBoxControl5</Property>
+            <Property Name="Size">74, 18</Property>
+            <Property Name="Location">83, 19</Property>
+            <Property Name="Text">Flag5</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="SymbolConfiguration">8;2;HMC_LINRGB;MLMM0;MLMM0_Comm1_MLM;LIN_SlaveFlag5_MLM;1;LIN;;-1;;;;;;0</Property>
+            <Property Name="TabIndex">0</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl1" Children="Controls" ControlName="Check Box">
+            <Property Name="Name">CheckBoxControl1</Property>
+            <Property Name="Size">74, 18</Property>
+            <Property Name="Location">14, 17</Property>
+            <Property Name="Text">Flag 1</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="SymbolConfiguration">8;2;HMC_LINRGB;MLMM0;MLMM0_Comm1_MLM;LIN_SlaveFlag1_MLM;1;LIN;;-1;;;;;;0</Property>
+            <Property Name="TabIndex">0</Property>
+          </Object>
+          <Property Name="Name">GroupBoxControl2</Property>
+          <Property Name="Size">168, 116</Property>
+          <Property Name="Location">181, 110</Property>
+          <Property Name="BackColor">White</Property>
+          <Property Name="Text">Slave flags</Property>
+          <Property Name="TabIndex">2</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl1" Children="Controls" ControlName="Group Box">
+          <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl1" Children="Controls" ControlName="ColorX">
+            <Property Name="Name">TextBoxControl1</Property>
+            <Property Name="Size">98, 19</Property>
+            <Property Name="Location">12, 19</Property>
+            <Property Name="AlarmUpperTextColor">WindowText</Property>
+            <Property Name="ValueDecimalPlaces">0</Property>
+            <Property Name="AlarmLowerBkgColor">Salmon</Property>
+            <Property Name="TextBackColor">White</Property>
+            <Property Name="ValueDisplay">Symbolic</Property>
+            <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+            <Property Name="AlarmLowerTextColor">WindowText</Property>
+            <Property Name="AlarmGeneralSettings">1;0;0;1</Property>
+            <Property Name="DisplayLabel">Left</Property>
+            <Property Name="DescriptionText">Color X : </Property>
+            <Property Name="ValueType">RawValue</Property>
+            <Property Name="DescriptionSize">55, 19</Property>
+            <Property Name="SymbolConfiguration">8;2;HMC_LINRGB;MLM;MLMM0_Comm1_CH1;LIN_ColorX_CH1;1;LIN;;-1;;;;;;0</Property>
+            <Property Name="TabIndex">0</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl2" Children="Controls" ControlName="Static Text 2">
+            <Property Name="Name">StaticTextControl2</Property>
+            <Property Name="Size">46, 13</Property>
+            <Property Name="Location">11, 76</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="Text">Intensity</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.NumericUpDownControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="NumericUpDownControl1" Children="Controls" ControlName="Numeric Up/Down">
+            <Property Name="Name">NumericUpDownControl1</Property>
+            <Property Name="Size">39, 19</Property>
+            <Property Name="Location">62, 73</Property>
+            <Property Name="Increment">0.4</Property>
+            <Property Name="SymbolConfiguration">8;2;HMC_LINRGB;MLMM0;MLMM0_Comm1_MLM;LIN_Brightness_MLM;1;LIN;;-1;;;;;;0</Property>
+            <Property Name="TabIndex">2</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl1" Children="Controls" ControlName="Static Text">
+            <Property Name="Name">StaticTextControl1</Property>
+            <Property Name="Size">15, 13</Property>
+            <Property Name="Location">112, 77</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="Text">%</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl2" Children="Controls" ControlName="ColorY">
+            <Property Name="Name">TextBoxControl2</Property>
+            <Property Name="Size">97, 19</Property>
+            <Property Name="Location">18, 43</Property>
+            <Property Name="AlarmUpperTextColor">WindowText</Property>
+            <Property Name="ValueDecimalPlaces">0</Property>
+            <Property Name="AlarmLowerBkgColor">Salmon</Property>
+            <Property Name="TextBackColor">White</Property>
+            <Property Name="ValueDisplay">Double</Property>
+            <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+            <Property Name="AlarmLowerTextColor">WindowText</Property>
+            <Property Name="AlarmGeneralSettings">1;2;0;1</Property>
+            <Property Name="DisplayLabel">Left</Property>
+            <Property Name="DescriptionText">Color Y : </Property>
+            <Property Name="DescriptionSize">55, 19</Property>
+            <Property Name="SymbolConfiguration">8;2;HMC_LINRGB;MLM;MLMM0_Comm1_CH1;LIN_ColorY_CH1;1;LIN;;-1;;;;;;0</Property>
+            <Property Name="TabIndex">0</Property>
+          </Object>
+          <Property Name="Name">GroupBoxControl1</Property>
+          <Property Name="Size">135, 116</Property>
+          <Property Name="Location">31, 110</Property>
+          <Property Name="BackColor">White</Property>
+          <Property Name="Text">Color</Property>
+          <Property Name="TabIndex">1</Property>
+        </Object>
+        <Property Name="Name">VectorTabPage1</Property>
+        <Property Name="Size">403, 391</Property>
+        <Property Name="Location">3, 19</Property>
+        <Property Name="Text">Control</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.VectorTabPage, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="VectorTabPage2" Children="Controls" ControlName="HMCRGB">
+        <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl1" Children="Controls" ControlName="Button">
+          <Property Name="Name">ButtonControl1</Property>
+          <Property Name="Size">75, 23</Property>
+          <Property Name="Location">46, 275</Property>
+          <Property Name="Text">Set NAD</Property>
+          <Property Name="SymbolConfiguration">4;1;HMC_LINRGB_Simulator;;;btnSetNad;1;;;-1</Property>
+          <Property Name="TabIndex">1</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl5" Children="Controls" ControlName="Group Box 5">
+          <Object Type="Vector.CANalyzer.Panels.Design.RadioButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="RadioButtonControl24" Children="Controls" ControlName="Radio Button 2">
+            <Property Name="Name">RadioButtonControl24</Property>
+            <Property Name="Size">54, 17</Property>
+            <Property Name="Location">228, 146</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="Text">FCML1</Property>
+            <Property Name="SwitchValueVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;RxValue&gt;33&lt;/RxValue&gt;</Property>
+            <Property Name="SwitchValueVT">1;Lower;33</Property>
+            <Property Name="SwitchValue">33</Property>
+            <Property Name="SymbolConfiguration">4;1;HMC_LINRGB_Simulator;;;radioNadSelected;1;;;-1</Property>
+            <Property Name="TabIndex">6</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.RadioButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="RadioButtonControl23" Children="Controls" ControlName="Radio Button 2">
+            <Property Name="Name">RadioButtonControl23</Property>
+            <Property Name="Size">54, 17</Property>
+            <Property Name="Location">228, 122</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="Text">FCML0</Property>
+            <Property Name="SwitchValueVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;RxValue&gt;32&lt;/RxValue&gt;</Property>
+            <Property Name="SwitchValueVT">1;Lower;32</Property>
+            <Property Name="SwitchValue">32</Property>
+            <Property Name="SymbolConfiguration">4;1;HMC_LINRGB_Simulator;;;radioNadSelected;1;;;-1</Property>
+            <Property Name="TabIndex">5</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.RadioButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="RadioButtonControl11" Children="Controls" ControlName="Radio Button 2">
+            <Property Name="Name">RadioButtonControl11</Property>
+            <Property Name="Size">70, 17</Property>
+            <Property Name="Location">123, 125</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="Text">RRDML0</Property>
+            <Property Name="SwitchValueVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;RxValue&gt;28&lt;/RxValue&gt;</Property>
+            <Property Name="SwitchValueVT">1;Lower;28</Property>
+            <Property Name="SwitchValue">28</Property>
+            <Property Name="SymbolConfiguration">4;1;HMC_LINRGB_Simulator;;;radioNadSelected;1;;;-1</Property>
+            <Property Name="TabIndex">0</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.RadioButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="RadioButtonControl9" Children="Controls" ControlName="Radio Button 2">
+            <Property Name="Name">RadioButtonControl9</Property>
+            <Property Name="Size">68, 17</Property>
+            <Property Name="Location">122, 77</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="Text">FRDML0</Property>
+            <Property Name="SwitchValueVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;RxValue&gt;20&lt;/RxValue&gt;</Property>
+            <Property Name="SwitchValueVT">1;Lower;20</Property>
+            <Property Name="SwitchValue">20</Property>
+            <Property Name="SymbolConfiguration">4;1;HMC_LINRGB_Simulator;;;radioNadSelected;1;;;-1</Property>
+            <Property Name="TabIndex">0</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.RadioButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="RadioButtonControl21" Children="Controls" ControlName="Radio Button 2">
+            <Property Name="Name">RadioButtonControl21</Property>
+            <Property Name="Size">59, 17</Property>
+            <Property Name="Location">122, 53</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="Text">FLDML1</Property>
+            <Property Name="SwitchValueVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;RxValue&gt;17&lt;/RxValue&gt;</Property>
+            <Property Name="SwitchValueVT">1;Lower;17</Property>
+            <Property Name="SwitchValue">17</Property>
+            <Property Name="SymbolConfiguration">4;1;HMC_LINRGB_Simulator;;;radioNadSelected;1;;;-1</Property>
+            <Property Name="TabIndex">3</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.RadioButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="RadioButtonControl22" Children="Controls" ControlName="Radio Button 2">
+            <Property Name="Name">RadioButtonControl22</Property>
+            <Property Name="Size">60, 17</Property>
+            <Property Name="Location">123, 101</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="Text">FRDML1</Property>
+            <Property Name="SwitchValueVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;RxValue&gt;21&lt;/RxValue&gt;</Property>
+            <Property Name="SwitchValueVT">1;Lower;21</Property>
+            <Property Name="SwitchValue">21</Property>
+            <Property Name="SymbolConfiguration">4;1;HMC_LINRGB_Simulator;;;radioNadSelected;1;;;-1</Property>
+            <Property Name="TabIndex">4</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.RadioButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="RadioButtonControl20" Children="Controls" ControlName="Radio Button 2">
+            <Property Name="Name">RadioButtonControl20</Property>
+            <Property Name="Size">61, 17</Property>
+            <Property Name="Location">122, 146</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="Text">RRDML1</Property>
+            <Property Name="SwitchValueVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;RxValue&gt;29&lt;/RxValue&gt;</Property>
+            <Property Name="SwitchValueVT">1;Lower;29</Property>
+            <Property Name="SwitchValue">29</Property>
+            <Property Name="SymbolConfiguration">4;1;HMC_LINRGB_Simulator;;;radioNadSelected;1;;;-1</Property>
+            <Property Name="TabIndex">2</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.RadioButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="RadioButtonControl19" Children="Controls" ControlName="Radio Button 2">
+            <Property Name="Name">RadioButtonControl19</Property>
+            <Property Name="Size">60, 17</Property>
+            <Property Name="Location">24, 146</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="Text">RLDML1</Property>
+            <Property Name="SwitchValueVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;RxValue&gt;25&lt;/RxValue&gt;</Property>
+            <Property Name="SwitchValueVT">1;Lower;25</Property>
+            <Property Name="SwitchValue">25</Property>
+            <Property Name="SymbolConfiguration">4;1;HMC_LINRGB_Simulator;;;radioNadSelected;1;;;-1</Property>
+            <Property Name="TabIndex">1</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.RadioButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="RadioButtonControl10" Children="Controls" ControlName="Radio Button 2">
+            <Property Name="Name">RadioButtonControl10</Property>
+            <Property Name="Size">68, 17</Property>
+            <Property Name="Location">24, 122</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="Text">RLDML0</Property>
+            <Property Name="SwitchValueVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;RxValue&gt;24&lt;/RxValue&gt;</Property>
+            <Property Name="SwitchValueVT">1;Lower;24</Property>
+            <Property Name="SwitchValue">24</Property>
+            <Property Name="SymbolConfiguration">4;1;HMC_LINRGB_Simulator;;;radioNadSelected;1;;;-1</Property>
+            <Property Name="TabIndex">0</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.RadioButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="RadioButtonControl15" Children="Controls" ControlName="Radio Button 2">
+            <Property Name="Name">RadioButtonControl15</Property>
+            <Property Name="Size">67, 17</Property>
+            <Property Name="Location">228, 99</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="Text">FRSML1</Property>
+            <Property Name="SwitchValueVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;RxValue&gt;45&lt;/RxValue&gt;</Property>
+            <Property Name="SwitchValueVT">1;Lower;45</Property>
+            <Property Name="SwitchValue">45</Property>
+            <Property Name="SymbolConfiguration">4;1;HMC_LINRGB_Simulator;;;radioNadSelected;1;;;-1</Property>
+            <Property Name="TabIndex">0</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.RadioButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="RadioButtonControl14" Children="Controls" ControlName="Radio Button 2">
+            <Property Name="Name">RadioButtonControl14</Property>
+            <Property Name="Size">67, 17</Property>
+            <Property Name="Location">228, 76</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="Text">FRSML0</Property>
+            <Property Name="SwitchValueVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;RxValue&gt;44&lt;/RxValue&gt;</Property>
+            <Property Name="SwitchValueVT">1;Lower;44</Property>
+            <Property Name="SwitchValue">44</Property>
+            <Property Name="SymbolConfiguration">4;1;HMC_LINRGB_Simulator;;;radioNadSelected;1;;;-1</Property>
+            <Property Name="TabIndex">0</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.RadioButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="RadioButtonControl13" Children="Controls" ControlName="Radio Button 2">
+            <Property Name="Name">RadioButtonControl13</Property>
+            <Property Name="Size">65, 17</Property>
+            <Property Name="Location">228, 53</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="Text">FLSML1</Property>
+            <Property Name="SwitchValueVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;RxValue&gt;41&lt;/RxValue&gt;</Property>
+            <Property Name="SwitchValueVT">1;Lower;41</Property>
+            <Property Name="SwitchValue">41</Property>
+            <Property Name="SymbolConfiguration">4;1;HMC_LINRGB_Simulator;;;radioNadSelected;1;;;-1</Property>
+            <Property Name="TabIndex">0</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.RadioButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="RadioButtonControl12" Children="Controls" ControlName="Radio Button 2">
+            <Property Name="Name">RadioButtonControl12</Property>
+            <Property Name="Size">65, 17</Property>
+            <Property Name="Location">228, 30</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="Text">FLSML0</Property>
+            <Property Name="SwitchValueVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;RxValue&gt;40&lt;/RxValue&gt;</Property>
+            <Property Name="SwitchValueVT">1;Lower;40</Property>
+            <Property Name="SwitchValue">40</Property>
+            <Property Name="SymbolConfiguration">4;1;HMC_LINRGB_Simulator;;;radioNadSelected;1;;;-1</Property>
+            <Property Name="TabIndex">0</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.RadioButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="RadioButtonControl8" Children="Controls" ControlName="Radio Button 2">
+            <Property Name="Name">RadioButtonControl8</Property>
+            <Property Name="Size">66, 17</Property>
+            <Property Name="Location">122, 30</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="Text">FLDML0</Property>
+            <Property Name="SwitchValueVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;RxValue&gt;16&lt;/RxValue&gt;</Property>
+            <Property Name="SwitchValueVT">1;Lower;16</Property>
+            <Property Name="SwitchValue">16</Property>
+            <Property Name="SymbolConfiguration">4;1;HMC_LINRGB_Simulator;;;radioNadSelected;1;;;-1</Property>
+            <Property Name="TabIndex">0</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.RadioButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="RadioButtonControl7" Children="Controls" ControlName="Radio Button 2">
+            <Property Name="Name">RadioButtonControl7</Property>
+            <Property Name="Size">60, 17</Property>
+            <Property Name="Location">24, 99</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="Text">CPML3</Property>
+            <Property Name="SwitchValueVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;RxValue&gt;13&lt;/RxValue&gt;</Property>
+            <Property Name="SwitchValueVT">1;Lower;13</Property>
+            <Property Name="SwitchValue">13</Property>
+            <Property Name="SymbolConfiguration">4;1;HMC_LINRGB_Simulator;;;radioNadSelected;1;;;-1</Property>
+            <Property Name="TabIndex">0</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.RadioButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="RadioButtonControl6" Children="Controls" ControlName="Radio Button 2">
+            <Property Name="Name">RadioButtonControl6</Property>
+            <Property Name="Size">60, 17</Property>
+            <Property Name="Location">24, 76</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="Text">CPML2</Property>
+            <Property Name="SwitchValueVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;RxValue&gt;12&lt;/RxValue&gt;</Property>
+            <Property Name="SwitchValueVT">1;Lower;12</Property>
+            <Property Name="SwitchValue">12</Property>
+            <Property Name="SymbolConfiguration">4;1;HMC_LINRGB_Simulator;;;radioNadSelected;1;;;-1</Property>
+            <Property Name="TabIndex">0</Property>
+          </Object>
+          <Object Type="Vector.CANalyzer.Panels.Design.RadioButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=16.0.145.0, Culture=neutral, PublicKeyToken=null" Name="RadioButtonControl5" Children="Controls" ControlName="Radio Button 2">
+            <Property Name="Name">RadioButtonControl5</Property>
+            <Property Name="Size">60, 17</Property>
+            <Property Name="Location">24, 53</Property>
+            <Property Name="BackColor">White</Property>
+            <Property Name="Text">CPML1</Property>
+            <Property Name="SwitchValueVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;RxValue&gt;11&lt;/RxValue&gt;</Property>
+            <Property Name="SwitchValueVT">1;Lower;11</Property>
+            <Property Name="SwitchValue">11</Property>
+            <Property Name="SymbolConfiguration">4;1;HMC_LINRGB_Simulator;;;radioNadSelected;1;;;-1</Property>
+            <Property Name="TabIndex">0</Property>
+          </Object>
+          <Property Name="Name">GroupBoxControl5</Property>
+          <Property Name="Size">344, 175</Property>
+          <Property Name="Location">22, 28</Property>
+          <Property Name="BackColor">White</Property>
+          <Property Name="Text">NAD</Property>
+          <Property Name="TabIndex">0</Property>
+        </Object>
+        <Property Name="Name">VectorTabPage2</Property>
+        <Property Name="Size">403, 391</Property>
+        <Property Name="Location">3, 19</Property>
+        <Property Name="Text">Node Configuration</Property>
+      </Object>
+      <Property Name="Name">VectorTabControl1</Property>
+      <Property Name="Size">408, 412</Property>
+      <Property Name="Location">2, 15</Property>
+      <Property Name="SymbolConfiguration">
+      </Property>
+      <Property Name="TabIndex">2</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">412, 430</Property>
+  </Object>
+</Panel>

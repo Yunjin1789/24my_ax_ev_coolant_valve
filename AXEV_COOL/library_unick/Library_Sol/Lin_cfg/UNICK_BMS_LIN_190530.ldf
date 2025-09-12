@@ -1,0 +1,133 @@
+/*---------GLOBAL DEFINITIONS-----------*/
+LIN_description_file;
+LIN_protocol_version             = "2.1";
+LIN_language_version             = "2.1";
+LIN_speed                        = 19.2 kbps;
+/* ----------NODE DEFINITIONS---------- */
+Nodes {
+   Master:
+      BMS,                                                   /* Master node name */
+      10.0 ms,                                               /* Time base */
+      1.0 ms;                                                /* Jitter */
+   Slaves:
+      Valve1;
+}
+/* ----------SIGNAL DEFINITIONS---------- */
+Signals {
+   /* Signal_name                : Size,       Init,            Publisher, Subscriber(s) */
+   CR_Bms_cmdAngle_Valve         :  8,        0x0,                  BMS, Valve1;
+   CR_Bms_Angle_Valve_FB         :  8,        0x0,                  BMS, Valve1;
+   CR_Valve1_Res1_HeaderID       :  8,        0x0,               Valve1, BMS;
+   CR_Valve1_Status              :  3,        0x0,               Valve1, BMS;
+   CR_Valve1_AuxVolt             :  8,        0x0,               Valve1, BMS;
+   CR_Valve1_OperAngle_FB        :  8,        0x0,               Valve1, BMS;
+   CR_Valve_BmsCmdAngle          :  8,        0x0,               Valve1, BMS;
+   CR_Valve1_Res2_HeaderID       :  8,        0x0,               Valve1, BMS;
+   CR_Valve1_HWversion           :  4,        0x0,               Valve1, BMS;
+   CR_Valve1_SWversion           :  4,        0x0,               Valve1, BMS;
+   CF_Valve1_LowVoltageFail      :  1,        0x0,               Valve1, BMS;
+   CF_Valve1_OverVoltageFail     :  1,        0x0,               Valve1, BMS;
+   CF_Valve1_HallsensorFail      :  1,        0x0,               Valve1, BMS;
+   CF_Valve1_LINCommFail         :  1,        0x0,               Valve1, BMS;
+   CR_Bms_Req_HeaderID           :  8,        0x0,                  BMS, Valve1;
+   CF_Valve_Acting_now           :  1,        0x0,               Valve1, BMS;
+   CR_Valve_Status_FB            :  3,        0x0,                  BMS, Valve1;
+}
+/* ----------DIAGNOSTIC SIGNAL DEFINITIONS---------- */
+Diagnostic_signals {
+   /* MasterReq Reserved Signals */
+   MasterReqB0         :    8,   0;
+   MasterReqB1         :    8,   0;
+   MasterReqB2         :    8,   0;
+   MasterReqB3         :    8,   0;
+   MasterReqB4         :    8,   0;
+   MasterReqB5         :    8,   0;
+   MasterReqB6         :    8,   0;
+   MasterReqB7         :    8,   0;
+   /* SlaveResp Reserved Signals */
+   SlaveRespB0         :    8,   0;
+   SlaveRespB1         :    8,   0;
+   SlaveRespB2         :    8,   0;
+   SlaveRespB3         :    8,   0;
+   SlaveRespB4         :    8,   0;
+   SlaveRespB5         :    8,   0;
+   SlaveRespB6         :    8,   0;
+   SlaveRespB7         :    8,   0;
+}
+/* ----------UNCONDITIONAL FRAME DEFINITIONS---------- */
+Frames {
+   Valve1_Batt_Res1    : 0x12, Valve1              ,    8 {
+      CR_Valve1_Res1_HeaderID, 0;
+      CR_Valve1_Status    , 8;
+      CR_Valve1_AuxVolt   , 16;
+      CR_Valve1_OperAngle_FB, 32;
+      CR_Valve_BmsCmdAngle, 24;
+      CF_Valve_Acting_now , 12;
+   }
+   Valve1_Batt_Res2    : 0x22, Valve1              ,    8 {
+      CR_Valve1_Res2_HeaderID, 0;
+      CR_Valve1_HWversion , 8;
+      CR_Valve1_SWversion , 12;
+      CF_Valve1_LowVoltageFail, 16;
+      CF_Valve1_OverVoltageFail, 17;
+      CF_Valve1_HallsensorFail, 18;
+      CF_Valve1_LINCommFail, 22;
+   }
+   BMS_Act_Req_Valve1  : 0x11, BMS                 ,    8 {
+      CR_Bms_cmdAngle_Valve, 8;
+      CR_Bms_Angle_Valve_FB, 16;
+      CR_Bms_Req_HeaderID , 0;
+      CR_Valve_Status_FB  , 48;
+   }
+}
+/* ----------DIAGNOSTIC FRAME DEFINITIONS---------- */
+Diagnostic_frames {
+   MasterReq           : 0x3c {
+      MasterReqB0         , 0;
+      MasterReqB1         , 8;
+      MasterReqB2         , 16;
+      MasterReqB3         , 24;
+      MasterReqB4         , 32;
+      MasterReqB5         , 40;
+      MasterReqB6         , 48;
+      MasterReqB7         , 56;
+   }
+   SlaveResp           : 0x3d {
+      SlaveRespB0         , 0;
+      SlaveRespB1         , 8;
+      SlaveRespB2         , 16;
+      SlaveRespB3         , 24;
+      SlaveRespB4         , 32;
+      SlaveRespB5         , 40;
+      SlaveRespB6         , 48;
+      SlaveRespB7         , 56;
+   }
+}
+/* ----------NODE ATTRIBUTE DEFINITIONS---------- */
+Node_attributes {
+   Valve1 {
+      LIN_protocol               = "2.1";                    /* Node protocol version */
+      configured_NAD             = 0x1;                      /* configured NAD of node (1-125) */
+      initial_NAD                = 0x1;                      /* initial NAD of node (1-125) */
+      product_id                 = 0x7ffe, 0xfffe,   0xff;   /* Product id */
+      response_error             = CF_Valve1_LINCommFail;    /* Response error signal */
+      P2_min                     = 200 ms;                   /* P2_min */
+      ST_min                     = 50 ms;                    /* ST_min */
+      N_As_timeout               = 12000 ms;                 /* N_As timeout value */
+      N_Cr_timeout               = 12000 ms;                 /* N_Cr timeout value */
+      configurable_frames {
+         Valve1_Batt_Res1;
+         Valve1_Batt_Res2;
+         BMS_Act_Req_Valve1;
+      }
+   }
+}
+/* ----------SCHEDULE TABLE DEFINITIONS---------- */
+Schedule_tables {
+   BMS_Req_Res_Valve {
+      BMS_Act_Req_Valve1                  delay 100.0 ms;
+      Valve1_Batt_Res1                    delay 100.0 ms;
+      Valve1_Batt_Res2                    delay 100.0 ms;
+   }
+}
+

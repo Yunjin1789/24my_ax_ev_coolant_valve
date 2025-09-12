@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspace>
+    <project>
+        <path>$WS_DIR$\3WAY_Boot_App.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\library_unick\3WAY_Valve_Bootloader\3WAY_Bootloader.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\3WAY_Coolant_All.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\library_unick\3WAY_Coolant_library.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\3WAY_Solenoid_All.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\3WAY_Solenoid_app.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\library_unick\3WAY_Solenoid_library.ewp</path>
+    </project>
+    <batchBuild />
+</workspace>

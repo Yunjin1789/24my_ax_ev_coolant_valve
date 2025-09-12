@@ -1,0 +1,203 @@
+/*---------GLOBAL DEFINITIONS-----------*/
+
+LIN_description_file;
+LIN_protocol_version = "2.1";
+LIN_language_version = "2.1";
+LIN_speed = 19.2 kbps;
+
+Nodes {
+  Master: DATC_3way2, 10 ms, 1 ms ;
+  Slaves: C_3way2_Datc ;
+}
+
+Signals {
+  C_3way2_C_LinError: 1, 0, C_3way2_Datc, DATC_3way2 ;
+  C_3way2_C_InitialSta: 2, 0, C_3way2_Datc, DATC_3way2 ;
+  C_3way2_C_Running: 1, 0, C_3way2_Datc, DATC_3way2 ;
+  C_3way2_C_Fault: 4, 0, C_3way2_Datc, DATC_3way2 ;
+  C_3way2_C_Voltage: 2, 0, C_3way2_Datc, DATC_3way2 ;
+  C_3way2_C_OverTemp: 2, 0, C_3way2_Datc, DATC_3way2 ;
+  C_3way2_C_PositionFB: 2, 0, C_3way2_Datc, DATC_3way2 ;
+  C_3way_PosReq: 2, 0, DATC_3way2, C_3way2_Datc ;
+  C_3way2_MoveEnable: 1, 0, DATC_3way2, C_3way2_Datc ;
+  C_3way_Initial: 2, 0, DATC_3way2, C_3way2_Datc ;
+  C_3way2_LinError: 1, 0, DATC_3way2, C_3way2_Datc ;
+  C_3way2_C_SW_Ver: 8, 0, C_3way2_Datc, DATC_3way2 ;
+  C_3way2_C_HW_Ver: 8, 0, C_3way2_Datc, DATC_3way2 ;
+}
+
+Diagnostic_signals {
+  MasterReqB0: 8, 0 ;
+  MasterReqB1: 8, 0 ;
+  MasterReqB2: 8, 0 ;
+  MasterReqB3: 8, 0 ;
+  MasterReqB4: 8, 0 ;
+  MasterReqB5: 8, 0 ;
+  MasterReqB6: 8, 0 ;
+  MasterReqB7: 8, 0 ;
+  SlaveRespB0: 8, 0 ;
+  SlaveRespB1: 8, 0 ;
+  SlaveRespB2: 8, 0 ;
+  SlaveRespB3: 8, 0 ;
+  SlaveRespB4: 8, 0 ;
+  SlaveRespB5: 8, 0 ;
+  SlaveRespB6: 8, 0 ;
+  SlaveRespB7: 8, 0 ;
+}
+
+
+
+Frames {
+  Datc_3way2: 40, DATC_3way2, 8 {
+    C_3way_PosReq, 0 ;
+    C_3way2_MoveEnable, 16 ;
+    C_3way_Initial, 24 ;
+    C_3way2_LinError, 32 ;
+  }
+  C_3way2_Datc: 41, C_3way2_Datc, 8 {
+    C_3way2_C_LinError, 0 ;
+    C_3way2_C_InitialSta, 2 ;
+    C_3way2_C_Running, 4 ;
+    C_3way2_C_Fault, 8 ;
+    C_3way2_C_Voltage, 12 ;
+    C_3way2_C_OverTemp, 14 ;
+    C_3way2_C_PositionFB, 16 ;
+    C_3way2_C_SW_Ver, 56 ;
+    C_3way2_C_HW_Ver, 48 ;
+  }
+}
+
+
+
+Diagnostic_frames {
+  MasterReq: 0x3c {
+    MasterReqB0, 0 ;
+    MasterReqB1, 8 ;
+    MasterReqB2, 16 ;
+    MasterReqB3, 24 ;
+    MasterReqB4, 32 ;
+    MasterReqB5, 40 ;
+    MasterReqB6, 48 ;
+    MasterReqB7, 56 ;
+  }
+  SlaveResp: 0x3d {
+    SlaveRespB0, 0 ;
+    SlaveRespB1, 8 ;
+    SlaveRespB2, 16 ;
+    SlaveRespB3, 24 ;
+    SlaveRespB4, 32 ;
+    SlaveRespB5, 40 ;
+    SlaveRespB6, 48 ;
+    SlaveRespB7, 56 ;
+  }
+}
+
+Node_attributes {
+  C_3way2_Datc{
+    LIN_protocol = "2.1" ;
+    configured_NAD = 0x1 ;
+    initial_NAD = 0x1 ;
+    product_id = 0x7FFE, 0xFFFE, 254 ;
+    response_error = C_3way2_C_LinError ;
+    P2_min = 50 ms ;
+    ST_min = 50 ms ;
+    N_As_timeout = 12000 ms ;
+    N_Cr_timeout = 12000 ms ;
+    configurable_frames {
+      C_3way2_Datc ;
+      Datc_3way2 ;
+    }
+  }
+}
+
+Schedule_tables {
+ CV_3WayValve {
+    Datc_3way2 delay 20 ms ;
+    C_3way2_Datc delay 20 ms ;
+  }
+}
+
+
+Signal_encoding_types {
+  C_3way2_C_Fault {
+    logical_value, 0, "Normal" ;
+    logical_value, 1, "Motor-Coil Shorted" ;
+    logical_value, 2, "Motor-Coil Open load" ;
+    logical_value, 3, "Over Temperature Shutdown" ;
+    logical_value, 4, "not defined" ;
+    logical_value, 5, "Motor Stall" ;
+  }
+  C_3way2_C_HW_Ver {
+    physical_value, 0, 255, 1, 0, "HW_VER" ;
+  }
+  C_3way2_C_InitialSta {
+    logical_value, 0, "Not Initialized" ;
+    logical_value, 1, "Initialization in Process" ;
+    logical_value, 2, "Initial Position" ;
+    logical_value, 3, "Invalid" ;
+  }
+  C_3way2_C_LinError {
+    logical_value, 0, " No Error" ;
+    logical_value, 1, " Error" ;
+  }
+  C_3way2_C_OverTemp {
+    logical_value, 0, "Normal(No problem)" ;
+    logical_value, 1, "Over Tempreature Warning" ;
+    logical_value, 2, "Invalid" ;
+    logical_value, 3, "Invalid" ;
+  }
+  C_3way2_C_PositionFB {
+    logical_value, 0, "Port 1 to Port 2 (HTR)" ;
+    logical_value, 1, "Port 1 to Port 3 (RSVR)" ;
+    logical_value, 2, "Invalid" ;
+  }
+  C_3way2_C_Running {
+    logical_value, 0, "Not Moving" ;
+    logical_value, 1, "Moving" ;
+  }
+  C_3way2_C_SW_Ver {
+    physical_value, 0, 255, 1, 0, "SW_Ver" ;
+  }
+  C_3way2_C_Voltage {
+    logical_value, 0, "Normal(No problem)" ;
+    logical_value, 1, "Over Voltage" ;
+    logical_value, 2, "Undef Voltage" ;
+    logical_value, 3, "Invalid" ;
+  }
+  C_3way2_LinError {
+    logical_value, 0, "No Error" ;
+    logical_value, 1, "Error" ;
+  }
+  C_3way2_MoveEnable {
+    logical_value, 0, "Stop" ;
+    logical_value, 1, "Move to Commanded Position" ;
+  }
+  C_3way_Initial {
+    logical_value, 0, "Default" ;
+    logical_value, 1, "At B+ Initialization" ;
+    logical_value, 2, "Invalid" ;
+    logical_value, 3, "Invalid" ;
+  }
+  C_3way_PosReq {
+    logical_value, 0, "Port 1 to Port 2 (HTR)" ;
+    logical_value, 1, "Port 1 to Port 3 (RSVR)" ;
+    logical_value, 2, "Invalid" ;
+    logical_value, 3, "Invalid" ;
+  }
+}
+
+Signal_representation {
+  C_3way2_C_Fault: C_3way2_C_Fault ;
+  C_3way2_C_HW_Ver: C_3way2_C_HW_Ver ;
+  C_3way2_C_InitialSta: C_3way2_C_InitialSta ;
+  C_3way2_C_LinError: C_3way2_C_LinError ;
+  C_3way2_C_OverTemp: C_3way2_C_OverTemp ;
+  C_3way2_C_PositionFB: C_3way2_C_PositionFB ;
+  C_3way2_C_Running: C_3way2_C_Running ;
+  C_3way2_C_SW_Ver: C_3way2_C_SW_Ver ;
+  C_3way2_C_Voltage: C_3way2_C_Voltage ;
+  C_3way2_LinError: C_3way2_LinError ;
+  C_3way2_MoveEnable: C_3way2_MoveEnable ;
+  C_3way_Initial: C_3way_Initial ;
+  C_3way_PosReq: C_3way_PosReq ;
+}

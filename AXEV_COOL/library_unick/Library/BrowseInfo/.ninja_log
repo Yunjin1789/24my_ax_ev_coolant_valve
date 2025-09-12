@@ -1,0 +1,52 @@
+# ninja log v5
+11	347	7022777330000000	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/lin_cfg.xcl	286f62aebcf41e15
+16	366	7022777330000000	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/linsNodeCfgIdentify.xcl	1d5bfe8332d5221b
+2	383	7022777330000000	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/linSlaveTask.xcl	51ce4289f07b56d0
+7	403	7022777330000000	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/linslaveTask_Private.xcl	8e0d1a3c0b1a1669
+363	545	7022777335485193	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/lin_cfg.pbi	1aea04a14eb7623d
+380	549	7022777335519771	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/linsNodeCfgIdentify.pbi	7eedfa8fe484b2e6
+419	585	7022777335881177	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/linslaveTask_Private.pbi	3ce16a5ef57ee797
+400	598	7022777336008342	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/linSlaveTask.pbi	2d9bb3b68be43aee
+601	685	7022777336873018	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/3WAY_Coolant_library.pbd	1c3c07d7a1cda105
+694	1326	7022777342932890	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/3WAY_Coolant_library.pbw	c70de1da3501311a
+19	372	7022777750000000	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/linSlaveTask.xcl	787ff9869f66537c
+16	392	7022777750000000	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/lin_cfg.xcl	1df0dcdf7bcb2834
+23	411	7022777750000000	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/linsNodeCfgIdentify.xcl	1815102d4518d0d0
+2	430	7022777750000000	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/linslaveTask_Private.xcl	2cefb452a26b67a
+389	576	7022777753365258	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/linSlaveTask.pbi	2d9bb3b68be43aee
+407	585	7022777753374990	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/lin_cfg.pbi	1aea04a14eb7623d
+427	597	7022777753580370	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/linsNodeCfgIdentify.pbi	7eedfa8fe484b2e6
+447	612	7022777753737510	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/linslaveTask_Private.pbi	3ce16a5ef57ee797
+616	691	7022777754518946	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/3WAY_Coolant_library.pbd	1c3c07d7a1cda105
+699	1303	7022777760295169	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/3WAY_Coolant_library.pbw	c70de1da3501311a
+23	336	7022777830000000	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/linslaveTask_Private.xcl	49328ef6e1200bce
+17	353	7022777830000000	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/lin_cfg.xcl	7f8a4f6088d50007
+29	370	7022777830000000	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/MotorControlDriver.xcl	c49182b51fea226b
+33	388	7022777830000000	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/MotorControlApi.xcl	f23a039cf60845ad
+37	408	7022777830000000	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/linsNodeCfgIdentify.xcl	cb757f288d672b5c
+12	426	7022777830000000	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/linSlaveTask.xcl	4d26cd29e855d845
+5	445	7022777830000000	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/Diagnosis.xcl	3d97efda473eabbe
+351	537	7022777838335428	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/linslaveTask_Private.pbi	3ce16a5ef57ee797
+367	559	7022777838569805	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/lin_cfg.pbi	1aea04a14eb7623d
+385	574	7022777838696775	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/MotorControlDriver.pbi	a37b9b4da8275ae1
+404	606	7022777839043982	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/MotorControlApi.pbi	52c4a9970af5e9b4
+584	620	7022777839180677	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/3WAY_Solenoid_library_part2.pbi	b400b82d267e8f5d
+442	646	7022777839444349	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/linSlaveTask.pbi	2d9bb3b68be43aee
+461	649	7022777839454117	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/Diagnosis.pbi	4c3c6b0972c15922
+423	681	7022777839795943	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/src/linsNodeCfgIdentify.pbi	7eedfa8fe484b2e6
+653	716	7022777840143095	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/3WAY_Solenoid_library_part0.pbi	270c575c03fcdd66
+685	747	7022777840445982	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/3WAY_Solenoid_library_part1.pbi	87d16c5ac1399045
+753	818	7022777841157523	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/3WAY_Solenoid_library.pbd	a3d6fc117a1f647d
+826	1477	7022777847495395	D:/WORK/IndieSemi/Customer/UNICK/fw/3WAY_Valve_1.0.0/library_unick/Library/BrowseInfo/3WAY_Solenoid_library.pbw	a0b2bb01c407a69
+68	441	7385854280000000	C:/Users/dbswl/OneDrive/바탕 화면/개발/2.프로젝트/2.개발진행/3.CV_EV_Cool_3Way_Valve(KMC)/3.SW/2.WorkSpace/ax_ev_cool_3way_valve/AXEV_SOP_V1.0.0/library_unick/Library/BrowseInfo/src/linslaveTask_Private.xcl	43b97798de21c46c
+91	485	7385854280000000	C:/Users/dbswl/OneDrive/바탕 화면/개발/2.프로젝트/2.개발진행/3.CV_EV_Cool_3Way_Valve(KMC)/3.SW/2.WorkSpace/ax_ev_cool_3way_valve/AXEV_SOP_V1.0.0/library_unick/Library/BrowseInfo/src/linsNodeCfgIdentify.xcl	f3747f74715c4f4
+57	531	7385854280000000	C:/Users/dbswl/OneDrive/바탕 화면/개발/2.프로젝트/2.개발진행/3.CV_EV_Cool_3Way_Valve(KMC)/3.SW/2.WorkSpace/ax_ev_cool_3way_valve/AXEV_SOP_V1.0.0/library_unick/Library/BrowseInfo/src/linSlaveTask.xcl	f5d47147c17f16d0
+79	588	7385854280000000	C:/Users/dbswl/OneDrive/바탕 화면/개발/2.프로젝트/2.개발진행/3.CV_EV_Cool_3Way_Valve(KMC)/3.SW/2.WorkSpace/ax_ev_cool_3way_valve/AXEV_SOP_V1.0.0/library_unick/Library/BrowseInfo/src/lin_cfg.xcl	d782598f4f820a4b
+479	786	7385854291379712	C:/Users/dbswl/OneDrive/바탕 화면/개발/2.프로젝트/2.개발진행/3.CV_EV_Cool_3Way_Valve(KMC)/3.SW/2.WorkSpace/ax_ev_cool_3way_valve/AXEV_SOP_V1.0.0/library_unick/Library/BrowseInfo/src/linslaveTask_Private.pbi	2922385d6315be57
+525	854	7385854292078001	C:/Users/dbswl/OneDrive/바탕 화면/개발/2.프로젝트/2.개발진행/3.CV_EV_Cool_3Way_Valve(KMC)/3.SW/2.WorkSpace/ax_ev_cool_3way_valve/AXEV_SOP_V1.0.0/library_unick/Library/BrowseInfo/src/linsNodeCfgIdentify.pbi	b738b77f51e2ab48
+635	901	7385854292549363	C:/Users/dbswl/OneDrive/바탕 화면/개발/2.프로젝트/2.개발진행/3.CV_EV_Cool_3Way_Valve(KMC)/3.SW/2.WorkSpace/ax_ev_cool_3way_valve/AXEV_SOP_V1.0.0/library_unick/Library/BrowseInfo/src/lin_cfg.pbi	9c20b2a06734881a
+578	940	7385854292936395	C:/Users/dbswl/OneDrive/바탕 화면/개발/2.프로젝트/2.개발진행/3.CV_EV_Cool_3Way_Valve(KMC)/3.SW/2.WorkSpace/ax_ev_cool_3way_valve/AXEV_SOP_V1.0.0/library_unick/Library/BrowseInfo/src/linSlaveTask.pbi	a7190d0ca1cef071
+947	1046	7385854294057490	C:/Users/dbswl/OneDrive/바탕 화면/개발/2.프로젝트/2.개발진행/3.CV_EV_Cool_3Way_Valve(KMC)/3.SW/2.WorkSpace/ax_ev_cool_3way_valve/AXEV_SOP_V1.0.0/library_unick/Library/BrowseInfo/3WAY_Coolant_library.pbd	54e102c078b49f3c
+5	244	7385884782770852	C:/Users/dbswl/OneDrive/바탕 화면/개발/2.프로젝트/2.개발진행/3.CV_EV_Cool_3Way_Valve(KMC)/3.SW/2.WorkSpace/ax_ev_cool_3way_valve/AXEV_SOP_V1.0.0/library_unick/Library/BrowseInfo/src/linslaveTask_Private.pbi	2922385d6315be57
+252	352	7385884783910653	C:/Users/dbswl/OneDrive/바탕 화면/개발/2.프로젝트/2.개발진행/3.CV_EV_Cool_3Way_Valve(KMC)/3.SW/2.WorkSpace/ax_ev_cool_3way_valve/AXEV_SOP_V1.0.0/library_unick/Library/BrowseInfo/3WAY_Coolant_library.pbd	54e102c078b49f3c
+363	1183	7385884791736588	C:/Users/dbswl/OneDrive/바탕 화면/개발/2.프로젝트/2.개발진행/3.CV_EV_Cool_3Way_Valve(KMC)/3.SW/2.WorkSpace/ax_ev_cool_3way_valve/AXEV_SOP_V1.0.0/library_unick/Library/BrowseInfo/3WAY_Coolant_library.pbw	47a85ad648b629bd

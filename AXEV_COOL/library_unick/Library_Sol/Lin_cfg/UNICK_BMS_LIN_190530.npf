@@ -1,0 +1,31 @@
+/*** GENERAL DEFINITION ***/
+LIN_node_config_file;
+
+/*** MCU DEFINITION ***/
+mcu {
+   mcu_name                      = MC9S12ZVL32;
+   bus_clock                     = 32000000;                 /* Frequency bus of system Hz*/
+   xgate_support                 = no;                       /* Support XGATE Co-Processor */
+}
+
+/*** LIN HARDWARE DEFINITION ***/
+/* Sci config */
+sci {
+   LIN_Valve_HD{
+      sci_channel                = 0;
+   }
+}
+
+/*** NETWORK DEFINITION ***/
+network {
+   idle_timeout                  = 4 s;
+   diagnostic_class              = 1;
+   resynchronization_support     = no;
+   autobaud_support              = no;
+   LIN_Valve_ND {
+      node                       = Valve1;                   /* Name of node described in LDF (must check consistence with LDF) */
+      file                       = "UNICK_BMS_LIN_190530.ldf"; /* Name of LDF file */
+      device                     = LIN_Valve_HD;
+   }
+}
+
