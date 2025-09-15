@@ -42,7 +42,9 @@ void SYS_Init(void)
     GPIOs_Init();
     PWM_Module_Init();
 #if _UNICK_COOL_
-	SPI_Init(SPI_CLK_DIV_64);
+        FLASH_Read();
+        Flash_EraseSector(FLASH_START_ADDRESS_USER_DATA);
+        SPI_Init(SPI_CLK_DIV_64);
         SM1_SendChar(0xE9F8); //0xE9F8 전류제한 X,  0xEDF8 전류제한 O
 #endif
 

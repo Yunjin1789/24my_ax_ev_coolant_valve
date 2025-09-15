@@ -23,3 +23,11 @@
 ### <AX_EV_SOP_V2.1.1 Rework>
  - 변경사항
    - 부트로더 삭제 및 JTAG Unlock 적용
+
+### <AX_EV_SOP_V2.2.1>
+ - 변경사항
+   - 전원체계 변경 (IG3 -> B+)
+
+### <AX_EV_SOP_V2.2.1B>
+ - 변경사항
+   - Flash Memory Read/Write 개선

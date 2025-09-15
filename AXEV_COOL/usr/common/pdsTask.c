@@ -38,16 +38,47 @@ void FLASH_Init(void)
 {
     CONTROLINFO *param = (CONTROLINFO *)FLASH_START_ADDRESS_USER_DATA;
     CoolValveInfo = *param;
-    Flash_EraseSector(FLASH_START_ADDRESS_USER_DATA);
+}
+
+/****************************************************************************************************************
+ * @brief  Check if the flash is erased
+ * @note   This function checks if the flash memory is erased by reading the data
+ *        and comparing it to the erased value (0xFFFFFFFF).
+ * @param  None
+ * @retval 1: Erased, 0: Not erased
+ ****************************************************************************************************************/
+uint8_t is_flash_erased(void)
+{
+    uint16_t wordLength;
+    uint8_t erased = 1U;
+    uint32_t data;
+
+    wordLength = ((uint16_t)sizeof(SystemParams_t) >> 2U);
+    for( uint32_t i = 0; i < wordLength; i++ )
+    {
+        data = *(volatile uint32_t *)(FLASH_START_ADDRESS_USER_DATA+i*4U);
+        
+        if( data != 0xFFFFFFFF )
+        {
+            erased = 0U;
+            break;
+        }
+    }
+    
+    return erased;
 }
 
 uint8_t FLASH_StoreAll(void)
 {
     uint16_t wordLength;
     uint32_t *pWord = (uint32_t *)((void *)&CoolValveInfo);
+    
+    if( is_flash_erased() == 0U )
+    {
+        Flash_EraseSector(FLASH_START_ADDRESS_USER_DATA);
+    }
 
     wordLength = ((uint16_t)sizeof(SystemParams_t) >> 2U);
-    Flash_EraseSector(FLASH_START_ADDRESS_USER_DATA);
     for(uint32_t i = 0; i < wordLength; i++){
         Flash_WriteWord(FLASH_START_ADDRESS_USER_DATA+i*4U,pWord[i]);
     }
@@ -74,7 +105,6 @@ void FLASH_Read(void)
     else{
         memset(&CoolValveInfo, 0, sizeof(CoolValveInfo));
     }
-    FLASH_StoreAll();
 }
 
 void EVENT_GotoSleep(void)

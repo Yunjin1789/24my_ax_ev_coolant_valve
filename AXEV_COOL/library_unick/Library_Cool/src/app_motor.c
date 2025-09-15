@@ -5,8 +5,51 @@ CONTROLINFO CoolValveInfo;
 
 static void Motor_Start(void)
 {
-    Motor_PWM_SetRatio16((uint32_t)PWM_DUTY90);
+    static double pwm_value_20khz_base;
+    static double pwm_value_20khz;
+    static double pwm_value_16khz;
+    static double target_duty;
+
+    if (CoolValveInfo.sAdc.u32IgnVoltage >= (uint32_t)MOTOR_MAXPWM_VOLTAGE)
+    {
+        pwm_value_20khz_base = (double)PWM_DUTY68;
+    }
+    else if (CoolValveInfo.sAdc.u32IgnVoltage <= (uint32_t)MOTOR_MINPWM_VOLTAGE)
+    {
+        pwm_value_20khz_base = (double)PWM_DUTY100;
+    }
+    else if (CoolValveInfo.sAdc.u32IgnVoltage > (uint32_t)MOTOR_MINPWM_VOLTAGE && CoolValveInfo.sAdc.u32IgnVoltage < (uint32_t)MOTOR_MAXPWM_VOLTAGE)
+    {
+        pwm_value_20khz_base = 100 - ((((double)CoolValveInfo.sAdc.u32IgnVoltage - (double)MOTOR_MINPWM_VOLTAGE) / 7000) * 32);
+    }
+        
+    if (CoolValveInfo.sMotor.u8ValveSoftstopMode == (uint8_t)DISABLED)
+    {
+        pwm_value_20khz = pwm_value_20khz_base;
+    }
+    else
+    {
+        if (CoolValveInfo.sMotor.u8HallValue < CoolValveInfo.sMotor.u8SoftHallValue)
+        {
+            pwm_value_20khz = pwm_value_20khz_base;
+        }
+        else if (CoolValveInfo.sMotor.u8HallValue < CoolValveInfo.sMotor.u8SealHallValue)
+        {
+            target_duty = pwm_value_20khz_base * 0.7;
+            if (target_duty < 60.0) target_duty = 60.0;
+
+            pwm_value_20khz = pwm_value_20khz_base - ((pwm_value_20khz_base - target_duty) *  (CoolValveInfo.sMotor.u8HallValue - CoolValveInfo.sMotor.u8SoftHallValue) / (CoolValveInfo.sMotor.u8SealHallValue - CoolValveInfo.sMotor.u8SoftHallValue));
+        }
+        else
+        {
+            target_duty = pwm_value_20khz_base * 0.7;
+            pwm_value_20khz = (target_duty < 60.0) ? 60.0 : target_duty;
+        }
+    }
+
+    pwm_value_16khz = (pwm_value_20khz * PWM_DUTY62) / 100.0; /* 20khz - 16khz cal */
     CoolValveInfo.sMotor.u8MotorRunning = (uint8_t)MOVING;
+    Motor_PWM_SetRatio16((uint32_t)pwm_value_16khz);
 }
 
 static void Motor_Stop(void)
@@ -126,22 +169,22 @@ static void Motor_Init_Func(void)
         u8_inithall_pulse_sampling = Hall_Sampling();
         if(u8_inithall_pulse_sampling == (uint8_t)1){
             u8_inithall_pulse_sampling = 0;
-            CoolValveInfo.sMotor.u8InitHallValue++;
+            CoolValveInfo.sMotor.u8HallValue++;
         }
 
         if(u8_initmotorCCW_stall_flag == (uint8_t)0){
             if((CoolValveInfo.sMotor.u8MotorCurrnetStatus == (uint8_t)ERROR_STATUS) && (CoolValveInfo.sMotor.u8MotorStallStatus == (uint8_t)ERROR_STATUS)){
                 CoolValveInfo.sMotor.u8MotorCurrnetStatus = (uint8_t)NORMAL_STATUS;
                 CoolValveInfo.sMotor.u8MotorStallStatus = (uint8_t)NORMAL_STATUS;
-                if(CoolValveInfo.sMotor.u8InitHallValue >= (uint8_t)u8_inithall_pulse_error){
+                if(CoolValveInfo.sMotor.u8HallValue >= (uint8_t)u8_inithall_pulse_error){
                     u8_initmotorCCW_stall_flag = 1;
                     u8_init_retryCCW_cnt = 0;
                     CoolValveInfo.uFaultFlag.bits.u8FaultFlagMotorStallFail = (uint8_t)NORMAL_STATUS;
                 }
-                else if(CoolValveInfo.sMotor.u8InitHallValue < (uint8_t)u8_inithall_pulse_error){
+                else if(CoolValveInfo.sMotor.u8HallValue < (uint8_t)u8_inithall_pulse_error){
                     Motor_Stop();
                     u8_initmotor_Rotation = 1;
-                    CoolValveInfo.sMotor.u8InitHallValue = 0;
+                    CoolValveInfo.sMotor.u8HallValue = 0;
                     u8_init_retryCCW_cnt++;
                     if(u8_init_retryCCW_cnt > (uint8_t)INIT_RETRY_CNT){
                         CoolValveInfo.uFaultFlag.bits.u8FaultFlagMotorStallFail = (uint8_t)ERROR_STATUS;
@@ -182,7 +225,7 @@ static void Motor_Init_Func(void)
                     u8_initmotor_mode = 0;
                     u8_initmotor_Rotation = 0;
                     u8_inithall_pulse_error = 0;
-                    CoolValveInfo.sMotor.u8InitHallValue = 0;
+                    CoolValveInfo.sMotor.u8HallValue = 0;
                     CoolValveInfo.sMotor.u8MotorRunning = (uint8_t)MOVING_DONE;
                     CoolValveInfo.sMotor.u16MotorRunningCount = 0;
                     CoolValveInfo.sMotor.u8MotorInitMode = (uint8_t)DISABLED;
@@ -218,22 +261,22 @@ static void Motor_Init_Func(void)
         u8_inithall_pulse_sampling = Hall_Sampling();
         if(u8_inithall_pulse_sampling == (uint8_t)1){
             u8_inithall_pulse_sampling = 0;
-            CoolValveInfo.sMotor.u8InitHallValue++;
+            CoolValveInfo.sMotor.u8HallValue++;
         }
       
         if(u8_initmotorCW_stall_flag == (uint8_t)0){
             if((CoolValveInfo.sMotor.u8MotorCurrnetStatus == (uint8_t)ERROR_STATUS) && (CoolValveInfo.sMotor.u8MotorStallStatus == (uint8_t)ERROR_STATUS)){
                 CoolValveInfo.sMotor.u8MotorCurrnetStatus = (uint8_t)NORMAL_STATUS;
                 CoolValveInfo.sMotor.u8MotorStallStatus = (uint8_t)NORMAL_STATUS;
-                if(CoolValveInfo.sMotor.u8InitHallValue >= (uint8_t)MOTOR_INIT_STALL_CNT){
+                if(CoolValveInfo.sMotor.u8HallValue >= (uint8_t)MOTOR_INIT_STALL_CNT){
                     u8_initmotorCW_stall_flag = 1;
                     u8_init_retryCW_cnt = 0;
                     CoolValveInfo.uFaultFlag.bits.u8FaultFlagMotorStallFail = (uint8_t)NORMAL_STATUS;
                 }
-                else if(CoolValveInfo.sMotor.u8InitHallValue < (uint8_t)MOTOR_INIT_STALL_CNT){
+                else if(CoolValveInfo.sMotor.u8HallValue < (uint8_t)MOTOR_INIT_STALL_CNT){
                     Motor_Stop();
                     u8_initmotor_Rotation = 0;
-                    CoolValveInfo.sMotor.u8InitHallValue = 0;
+                    CoolValveInfo.sMotor.u8HallValue = 0;
                     u8_init_retryCW_cnt++;
                     if(u8_init_retryCW_cnt > (uint8_t)INIT_RETRY_CNT){
                         CoolValveInfo.uFaultFlag.bits.u8FaultFlagMotorStallFail = (uint8_t)ERROR_STATUS;
@@ -270,7 +313,7 @@ static void Motor_Init_Func(void)
                     
                     u8_inithall_pulse_error = (uint8_t)MOTOR_REQ_STALL_CNT;
                     u8_initmotor_mode = (uint8_t)ENABLED;
-                    CoolValveInfo.sMotor.u8InitHallValue = 0;
+                    CoolValveInfo.sMotor.u8HallValue = 0;
                     u8_initmotor_Rotation = 0;
                     CoolValveInfo.sMotor.u8MotorRunning = (uint8_t)MOVING_DONE;
                     CoolValveInfo.sMotor.u16MotorRunningCount = 0;
@@ -288,7 +331,7 @@ static void Motor_Init_Func(void)
                     u8_init_retryCCW_cnt = 0;
                     u8_initmotor_mode = 0;
                     u8_initmotor_Rotation = 0;
-                    CoolValveInfo.sMotor.u8InitHallValue = 0;
+                    CoolValveInfo.sMotor.u8HallValue = 0;
                     CoolValveInfo.sMotor.u8MotorRunning = (uint8_t)MOVING_DONE;
                     CoolValveInfo.sMotor.u16MotorRunningCount = 0;
                     CoolValveInfo.sMotor.u8MotorInitDone = (uint8_t)INIT_DONE;
@@ -301,189 +344,184 @@ static void Motor_Init_Func(void)
         }
     }
 }
+  
+static void Motor_ReqRetry_Func(void)
+{
+    if (CoolValveInfo.sMotor.u8MotorCurrnetStatus == (uint8_t)ERROR_STATUS && CoolValveInfo.sMotor.u8MotorStallStatus == (uint8_t)ERROR_STATUS)
+    {
+        CoolValveInfo.sMotor.u8MotorCurrnetStatus = (uint8_t)NORMAL_STATUS;
+        CoolValveInfo.sMotor.u8MotorStallStatus = (uint8_t)NORMAL_STATUS;
+        Motor_Stop();
+        CoolValveInfo.sMotor.u8ValveReqRetryMode = (uint8_t)ENABLED;
+        CoolValveInfo.sMotor.u8SoftHallValue = CoolValveInfo.sMotor.u8HallValue - (MOTOR_TARGET_HALL - MOTOR_SOFTSTOP_HALL);
+        CoolValveInfo.sMotor.u8SealHallValue = CoolValveInfo.sMotor.u8HallValue - (MOTOR_TARGET_HALL - MOTOR_SEAL_HALL);
+        CoolValveInfo.sMotor.u8TargetHallValue = CoolValveInfo.sMotor.u8HallValue;
+        CoolValveInfo.sMotor.u8HallValue = 0;
+
+        if (CoolValveInfo.sLin.sReceive.C_3way_PosReq == (uint8_t)MotorDirectionCW)
+        {
+            CoolValveInfo.sLin.sReceive.C_3way_PosReq = (uint8_t)MotorDirectionCCW;
+            CoolValveInfo.sMotor.u8ValveCWRetryCnt++;
+            if (CoolValveInfo.sMotor.u8ValveCWRetryCnt > (uint8_t)REQ_RETRY_CNT)
+            {
+                CoolValveInfo.uFaultFlag.bits.u8FaultFlagMotorStallFail = (uint8_t)ERROR_STATUS;
+                CoolValveInfo.sMotor.u8ValveReqRetryMode = (uint8_t)DISABLED;
+                CoolValveInfo.sMotor.u8ValveCWRetryCnt = 0;
+            }
+        }
+        else
+        {
+            CoolValveInfo.sLin.sReceive.C_3way_PosReq = (uint8_t)MotorDirectionCW;
+            CoolValveInfo.sMotor.u8ValveCCWRetryCnt++;
+            if (CoolValveInfo.sMotor.u8ValveCCWRetryCnt > (uint8_t)REQ_RETRY_CNT)
+            {
+                CoolValveInfo.uFaultFlag.bits.u8FaultFlagMotorStallFail = (uint8_t)ERROR_STATUS;
+                CoolValveInfo.sMotor.u8ValveReqRetryMode = (uint8_t)DISABLED;
+                CoolValveInfo.sMotor.u8ValveCCWRetryCnt = 0;
+            }
+        }
+    }
+    else
+    {
+        if (CoolValveInfo.sMotor.u16MotorRunningCount <= (uint8_t)MOTOR_RUNERROR_TMR)
+        {
+            CoolValveInfo.uFaultFlag.bits.u8FaultFlagMotorStallFail = (uint8_t)NORMAL_STATUS;
+        }
+        else
+        {
+            CoolValveInfo.uFaultFlag.bits.u8FaultFlagMotorStallFail = (uint8_t)ERROR_STATUS;
+        }
+    }
+}
 
 static void Motor_Request_Func(void)
 {
-    static uint16_t u16_motor_stop_cnt = 0;
     static uint8_t u8_motorCW_stall_flag = 0;
     static uint8_t u8_motorCCW_stall_flag = 0;
     static uint8_t u8_hall_pulse_sampling = 0;
-    static uint8_t u8_req_retryCW_cnt = 0;
-    static uint8_t u8_req_retryCCW_cnt = 0;
-    
-    static uint8_t u8_movehall_pulse_error = 0;
-    
 
-    if(CoolValveInfo.sMotor.u8ValveMPMode == (uint8_t)ENABLED){
-        u8_movehall_pulse_error = (uint8_t)MOTOR_MPMODE_STALL_CNT;
-    }
-    else if(CoolValveInfo.sMotor.u8ValveMPMode == (uint8_t)DISABLED){
-        u8_movehall_pulse_error = (uint8_t)MOTOR_REQ_STALL_CNT;
-    }
-    else{
-        /* empty */
-    }
+    if((CoolValveInfo.sMotor.u8MotorMoveEnable == (uint8_t)ENABLED) || (CoolValveInfo.sMotor.u8ValveReqRetryMode == (uint8_t)ENABLED))
+    {
+        if(CoolValveInfo.sMotor.u8ValveReqRetryMode == (uint8_t)DISABLED)
+        {
+            CoolValveInfo.sMotor.u8SoftHallValue = MOTOR_SOFTSTOP_HALL;
+            CoolValveInfo.sMotor.u8SealHallValue = MOTOR_SEAL_HALL;
+            CoolValveInfo.sMotor.u8TargetHallValue = MOTOR_TARGET_HALL;
+        }
 
-    if((CoolValveInfo.sMotor.u8MotorMoveEnable == (uint8_t)ENABLED) || (CoolValveInfo.sMotor.u8ValveReqRetryMode == (uint8_t)ENABLED)){
-        if(CoolValveInfo.sLin.sReceive.C_3way_PosReq == (uint8_t)MotorDirectionCW){
+        if(CoolValveInfo.sLin.sReceive.C_3way_PosReq == (uint8_t)MotorDirectionCW)
+        {
             Motor_Direction(MotorDirectionCW);
             Motor_Start();
             u8_hall_pulse_sampling = Hall_Sampling();
-            if(u8_hall_pulse_sampling == (uint8_t)1){
+            if(u8_hall_pulse_sampling == (uint8_t)1)
+            {
                 u8_hall_pulse_sampling = 0;
-                CoolValveInfo.sMotor.u8ReqHallValue++;
+                CoolValveInfo.sMotor.u8HallValue++;
             }
             
-            if(u8_motorCW_stall_flag == (uint8_t)0){
-                if(CoolValveInfo.sMotor.u8MotorDirection == (uint8_t)MotorDirectionCW){
-                    if((CoolValveInfo.sMotor.u8MotorCurrnetStatus == (uint8_t)ERROR_STATUS) && (CoolValveInfo.sMotor.u8MotorStallStatus == (uint8_t)ERROR_STATUS)){
-                        CoolValveInfo.sMotor.u8MotorCurrnetStatus = (uint8_t)NORMAL_STATUS;
-                        CoolValveInfo.sMotor.u8MotorStallStatus = (uint8_t)NORMAL_STATUS;
-                        if(CoolValveInfo.sMotor.u8ReqHallValue >= (uint8_t)u8_movehall_pulse_error){
+            if(u8_motorCW_stall_flag == (uint8_t)0)
+            {
+                if(CoolValveInfo.sMotor.u8HallValue < (uint8_t)CoolValveInfo.sMotor.u8SoftHallValue)
+                {
+                    Motor_ReqRetry_Func();
+                }
+                else
+                {
+                    CoolValveInfo.sMotor.u8ValveSoftstopMode = (uint8_t)ENABLED;
+                    if(CoolValveInfo.sMotor.u8HallValue < (uint8_t)CoolValveInfo.sMotor.u8SealHallValue)
+                    {
+                        Motor_ReqRetry_Func();
+                    }
+                    else
+                    {
+                        if(CoolValveInfo.sMotor.u8HallValue < (uint8_t)CoolValveInfo.sMotor.u8TargetHallValue)
+                        {
+                            if((CoolValveInfo.sMotor.u8MotorCurrnetStatus == (uint8_t)ERROR_STATUS) && (CoolValveInfo.sMotor.u8MotorStallStatus == (uint8_t)ERROR_STATUS))
+                            {
+                                u8_motorCW_stall_flag = 1;
+                                CoolValveInfo.sMotor.u8MotorCurrnetStatus = (uint8_t)NORMAL_STATUS;
+                                CoolValveInfo.sMotor.u8MotorStallStatus = (uint8_t)NORMAL_STATUS;
+                            }
+                        }
+                        else
+                        {
                             u8_motorCW_stall_flag = 1;
-                            u8_req_retryCW_cnt = 0;
-                            CoolValveInfo.sMotor.u8ValveReqRetryMode = (uint8_t)DISABLED;
                         }
-                        else if(CoolValveInfo.sMotor.u8ReqHallValue < (uint8_t)u8_movehall_pulse_error){
-                            Motor_Stop();
-                            CoolValveInfo.sMotor.u8ValveReqRetryMode = (uint8_t)ENABLED;
-                            CoolValveInfo.sLin.sReceive.C_3way_PosReq = (uint8_t)MotorDirectionCCW;
-                            CoolValveInfo.sMotor.u8ReqHallValue = 0;
-                            u8_req_retryCW_cnt++;
-                            if(u8_req_retryCW_cnt > (uint8_t)REQ_RETRY_CNT){
-                                CoolValveInfo.uFaultFlag.bits.u8FaultFlagMotorStallFail = (uint8_t)ERROR_STATUS;
-                                u8_req_retryCW_cnt = 0;
-                                u8_req_retryCCW_cnt = 0;
-                            }
-                            
-                            if(CoolValveInfo.sMotor.u8ValveMPMode == (uint8_t)ENABLED){
-                                CoolValveInfo.sMotor.u8ValveMPCount++;
-                            }
-                        }
-                        else{
-                            /* empty */
-                        }
-                    }
-                    else if((CoolValveInfo.sMotor.u8MotorCurrnetStatus == (uint8_t)NORMAL_STATUS) && (CoolValveInfo.sMotor.u8MotorStallStatus == (uint8_t)ERROR_STATUS)){
-                        if(CoolValveInfo.sMotor.u16MotorRunningCount <= (uint8_t)MOTOR_RUNERROR_TMR){
-                            CoolValveInfo.uFaultFlag.bits.u8FaultFlagMotorStallFail = (uint8_t)NORMAL_STATUS;
-                        }
-                        else if(CoolValveInfo.sMotor.u16MotorRunningCount > (uint8_t)MOTOR_RUNERROR_TMR){
-                            CoolValveInfo.uFaultFlag.bits.u8FaultFlagMotorStallFail = (uint8_t)ERROR_STATUS;
-                        }
-                        else{
-                            /* empty */
-                        }
-                    }
-                    else{
-                        /* empty */
                     }
                 }
             }
-            else if(u8_motorCW_stall_flag == (uint8_t)1){
-                u16_motor_stop_cnt++;
-                if(u16_motor_stop_cnt >= (uint16_t)MOTOR_MOVESTOP_CNT){
-                    Motor_Stop();
-                    u16_motor_stop_cnt = 0;
-                    CoolValveInfo.sMotor.u8ReqHallValue = 0;
-                    u8_motorCW_stall_flag = 0;
-                    u8_req_retryCW_cnt = 0;
-                    u8_req_retryCCW_cnt = 0;
-                    CoolValveInfo.sMotor.u8MotorPositionFB = (uint8_t)MotorDirectionCW;
-                    CoolValveInfo.sMotor.u8MotorRunning = (uint8_t)MOVING_DONE;
-                    CoolValveInfo.sMotor.u16MotorRunningCount = 0;
-                    
-                    if(CoolValveInfo.sMotor.u8ValveMPMode == (uint8_t)ENABLED){
-                        CoolValveInfo.sMotor.u8ValveMPCount++;
-                    }
-                }
-            }
-            else{
-                /* empty */
+            else
+            {
+                Motor_Stop();
+                CoolValveInfo.sMotor.u8HallValue = 0;
+                CoolValveInfo.sMotor.u8ValveSoftstopMode = (uint8_t)DISABLED;
+                CoolValveInfo.sMotor.u8ValveReqRetryMode = (uint8_t)DISABLED;
+                u8_motorCW_stall_flag = 0;
+                CoolValveInfo.sMotor.u8ValveCWRetryCnt = 0;
+                CoolValveInfo.sMotor.u8MotorPositionFB = (uint8_t)MotorDirectionCW;
+                CoolValveInfo.sMotor.u8MotorRunning = (uint8_t)MOVING_DONE;
+                CoolValveInfo.sMotor.u16MotorRunningCount = 0;
             }
         }
-        else if(CoolValveInfo.sLin.sReceive.C_3way_PosReq == (uint8_t)MotorDirectionCCW){
+        else
+        {
             Motor_Direction(MotorDirectionCCW);
             Motor_Start();
             u8_hall_pulse_sampling = Hall_Sampling();
-            if(u8_hall_pulse_sampling == (uint8_t)1){
+            if(u8_hall_pulse_sampling == (uint8_t)1)
+            {
                 u8_hall_pulse_sampling = 0;
-                CoolValveInfo.sMotor.u8ReqHallValue++;
+                CoolValveInfo.sMotor.u8HallValue++;
             }
             
-            if(u8_motorCCW_stall_flag == (uint8_t)0){
-                if(CoolValveInfo.sMotor.u8MotorDirection == (uint8_t)MotorDirectionCCW){
-                    if((CoolValveInfo.sMotor.u8MotorCurrnetStatus == (uint8_t)ERROR_STATUS) && (CoolValveInfo.sMotor.u8MotorStallStatus == (uint8_t)ERROR_STATUS)){
-                        CoolValveInfo.sMotor.u8MotorCurrnetStatus = (uint8_t)NORMAL_STATUS;
-                        CoolValveInfo.sMotor.u8MotorStallStatus = (uint8_t)NORMAL_STATUS;
-                        if(CoolValveInfo.sMotor.u8ReqHallValue >= (uint8_t)u8_movehall_pulse_error){
+            if(u8_motorCCW_stall_flag == (uint8_t)0)
+            {
+                if(CoolValveInfo.sMotor.u8HallValue < (uint8_t)CoolValveInfo.sMotor.u8SoftHallValue)
+                {
+                    Motor_ReqRetry_Func();
+                }
+                else
+                {
+                    CoolValveInfo.sMotor.u8ValveSoftstopMode = (uint8_t)ENABLED;
+                    if(CoolValveInfo.sMotor.u8HallValue < (uint8_t)CoolValveInfo.sMotor.u8SealHallValue)
+                    {
+                        Motor_ReqRetry_Func();
+                    }
+                    else
+                    {
+                        if(CoolValveInfo.sMotor.u8HallValue < (uint8_t)CoolValveInfo.sMotor.u8TargetHallValue)
+                        {
+                            if((CoolValveInfo.sMotor.u8MotorCurrnetStatus == (uint8_t)ERROR_STATUS) && (CoolValveInfo.sMotor.u8MotorStallStatus == (uint8_t)ERROR_STATUS))
+                            {
+                                u8_motorCCW_stall_flag = 1;
+                                CoolValveInfo.sMotor.u8MotorCurrnetStatus = (uint8_t)NORMAL_STATUS;
+                                CoolValveInfo.sMotor.u8MotorStallStatus = (uint8_t)NORMAL_STATUS;
+                            }
+                        }
+                        else
+                        {
                             u8_motorCCW_stall_flag = 1;
-                            u8_req_retryCCW_cnt = 0;
-                            CoolValveInfo.sMotor.u8ValveReqRetryMode = (uint8_t)DISABLED;
                         }
-                        else if(CoolValveInfo.sMotor.u8ReqHallValue < (uint8_t)u8_movehall_pulse_error){
-                            Motor_Stop();
-                            CoolValveInfo.sMotor.u8ValveReqRetryMode = (uint8_t)ENABLED;
-                            CoolValveInfo.sLin.sReceive.C_3way_PosReq = (uint8_t)MotorDirectionCW;
-                            CoolValveInfo.sMotor.u8ReqHallValue = 0;
-                            u8_req_retryCCW_cnt++;
-                            if(u8_req_retryCCW_cnt > (uint8_t)REQ_RETRY_CNT){
-                                CoolValveInfo.uFaultFlag.bits.u8FaultFlagMotorStallFail = (uint8_t)ERROR_STATUS;
-                                u8_req_retryCCW_cnt = 0;
-                                u8_req_retryCW_cnt = 0;
-                            }
-                            
-                            if(CoolValveInfo.sMotor.u8ValveMPMode == (uint8_t)ENABLED){
-                                CoolValveInfo.sMotor.u8ValveMPCount++;
-                            }
-                        }
-                        else{
-                            /* empty */
-                        }
-                    }
-                    else if((CoolValveInfo.sMotor.u8MotorCurrnetStatus == (uint8_t)NORMAL_STATUS) && (CoolValveInfo.sMotor.u8MotorStallStatus == (uint8_t)ERROR_STATUS)){
-                        if(CoolValveInfo.sMotor.u16MotorRunningCount <= (uint8_t)MOTOR_RUNERROR_TMR){
-                            CoolValveInfo.uFaultFlag.bits.u8FaultFlagMotorStallFail = (uint8_t)NORMAL_STATUS;
-                        }
-                        else if(CoolValveInfo.sMotor.u16MotorRunningCount > (uint8_t)MOTOR_RUNERROR_TMR){
-                            CoolValveInfo.uFaultFlag.bits.u8FaultFlagMotorStallFail = (uint8_t)ERROR_STATUS;
-                        }
-                        else{
-                            /* empty */
-                        }
-                    }
-                    else{
-                        /* empty */
                     }
                 }
             }
-            else if(u8_motorCCW_stall_flag == (uint8_t)1){
-                u16_motor_stop_cnt++;
-                if(u16_motor_stop_cnt >= (uint16_t)MOTOR_MOVESTOP_CNT){
-                    Motor_Stop();
-                    u16_motor_stop_cnt = 0;
-                    CoolValveInfo.sMotor.u8ReqHallValue = 0;
-                    u8_motorCCW_stall_flag = 0;
-                    u8_req_retryCCW_cnt = 0;
-                    u8_req_retryCW_cnt = 0;
-                    CoolValveInfo.sMotor.u8MotorPositionFB = (uint8_t)MotorDirectionCCW;
-                    CoolValveInfo.sMotor.u8MotorRunning = (uint8_t)MOVING_DONE;
-                    CoolValveInfo.sMotor.u16MotorRunningCount = 0;
-                    
-                    if(CoolValveInfo.sMotor.u8ValveMPMode == (uint8_t)ENABLED){
-                        CoolValveInfo.sMotor.u8ValveMPCount++;
-                    }
-                }
+            else
+            {
+                Motor_Stop();
+                CoolValveInfo.sMotor.u8HallValue = 0;
+                CoolValveInfo.sMotor.u8ValveSoftstopMode = (uint8_t)DISABLED;
+                CoolValveInfo.sMotor.u8ValveReqRetryMode = (uint8_t)DISABLED;
+                u8_motorCCW_stall_flag = 0;
+                CoolValveInfo.sMotor.u8ValveCCWRetryCnt = 0;
+                CoolValveInfo.sMotor.u8MotorPositionFB = (uint8_t)MotorDirectionCCW;
+                CoolValveInfo.sMotor.u8MotorRunning = (uint8_t)MOVING_DONE;
+                CoolValveInfo.sMotor.u16MotorRunningCount = 0;
             }
-            else{
-                /* empty */
-            }
-        }
-        else{
-            /* empty */
         }
     }
-    else{
+    else
+    {
         Motor_Stop();
         CoolValveInfo.sMotor.u8MotorRunning = (uint8_t)MOVING_DONE;
         CoolValveInfo.sMotor.u16MotorRunningCount = 0;

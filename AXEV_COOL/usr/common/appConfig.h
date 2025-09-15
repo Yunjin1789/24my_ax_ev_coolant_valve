@@ -45,7 +45,7 @@ static __INLINE PwmChannel_t PHY_CHANNEL_B(uint8_t x){ return (PwmChannel_t)((ui
   #error LED_NUM should be within 1-8!
 #endif
 
-#define LIN_SLEEP_MODE                          (0U)
+#define LIN_SLEEP_MODE                          (1U)
 
 #define LEDCCR_EXTERALBUCK              (0U)
 //#define GPIO_ADC_ENABLE                 (0U)

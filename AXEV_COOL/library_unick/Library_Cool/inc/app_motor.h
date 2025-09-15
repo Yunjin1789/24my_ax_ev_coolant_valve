@@ -12,13 +12,16 @@
 #define INIT_RETRY_CNT                  5U
 #define REQ_RETRY_CNT                   5U
 
-#define MOTOR_MAXPWM_VOLTAGE            14400U
-#define MOTOR_MINPWM_VOLTAGE            8000U
+#define MOTOR_MAXPWM_VOLTAGE            16000U          // 16.0V
+#define MOTOR_MINPWM_VOLTAGE            9000U           // 9.0V
 #define MOTOR_INITSTOP_CNT              50U
 #define MOTOR_MOVESTOP_CNT              100U
 #define MOTOR_RUNERROR_TMR              240U            // 24s
 #define MOTOR_TRELEASE_TMR              600U            // 1m
 #define MOTOR_RELEASE_TMR               3000U           // 5m
+#define MOTOR_SOFTSTOP_HALL             64U
+#define MOTOR_SEAL_HALL                 72U
+#define MOTOR_TARGET_HALL               81U
 
 #define PWM_DUTY00                      0U
 #define PWM_DUTY10                      10U
@@ -128,6 +131,7 @@ typedef struct tag_sMotorInformation
     uint8_t         u8MotorRunning;
     uint16_t        u16MotorRunningCount;
     uint8_t         u8MotorDirection;
+    uint16_t        u16MotorRpm;
     
     uint8_t         u8MotorCurrnetStatus;
     uint8_t         u8MotorStallStatus;
@@ -135,10 +139,15 @@ typedef struct tag_sMotorInformation
     uint8_t         u8ValveMPCount;
     uint8_t         u8ValveMPMode;
     uint8_t         u8ValveReqRetryMode;
+    uint8_t         u8ValveCWRetryCnt;
+    uint8_t         u8ValveCCWRetryCnt;
     uint8_t         u8ValveWakeupMode;
+    uint8_t         u8ValveSoftstopMode;
     
-    uint8_t         u8InitHallValue;
-    uint8_t         u8ReqHallValue;
+    uint8_t         u8HallValue;
+    uint8_t         u8TargetHallValue;
+    uint8_t         u8SealHallValue;
+    uint8_t         u8SoftHallValue;
 }MOTORINFO;
 
 typedef struct tag_sChecksumInformation

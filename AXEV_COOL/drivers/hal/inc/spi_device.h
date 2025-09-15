@@ -21,38 +21,7 @@ typedef enum{
 }SpiClkDevider_t;
 
 
-int8_t SPI_Init(SpiClkDevider_t devider);
-int8_t SPI_SendBuff(uint8_t * const buff, uint16_t length);
-int8_t SPI_ReadBuff(uint8_t * const buff, uint16_t length);
-void SPI_SendToRead(uint8_t * const wBuff, uint8_t * const rBuff, uint16_t length);
-
+void SPI_Init(SpiClkDevider_t devider);
 byte SM1_SendChar(SM1_TComData Chr);
-byte SM1_RecvChar(SM1_TComData *Chr);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+void SPI_WriteReadByte(uint8_t *const buff, uint16_t length);
 #endif

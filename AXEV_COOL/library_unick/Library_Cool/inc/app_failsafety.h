@@ -21,7 +21,7 @@
 #define MCU_TEMP_NORMAL_MAX             960U
 
 #define MCU_WAKEUP_TIMER                200U            // 2s
-#define MOTOR_FAULT_CNT                 50U
+#define MOTOR_FAULT_CNT                 500U
 
 typedef union tag_uFaultFlag
 {

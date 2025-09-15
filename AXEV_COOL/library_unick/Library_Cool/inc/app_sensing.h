@@ -12,6 +12,7 @@
 #define CHANNEL_TEMP                    1U
 #define CHANNEL_CURRENT                 2U
 #define CHANNEL_IGN1                    3U
+#define MOTOR_RPM_LIMIT                 720U            // If 18V Input Motor RPM
 
 typedef struct tag_sAdcInformation
 {

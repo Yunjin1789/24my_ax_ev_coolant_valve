@@ -140,7 +140,7 @@ static void Lin_Motor_Transmit(void)
         }
     }
     
-    l_u8_wr_LI0_C_3way2_C_SW_Ver(211);
+    l_u8_wr_LI0_C_3way2_C_SW_Ver(221);
     l_u8_wr_LI0_C_3way2_C_HW_Ver(100);
 }
 

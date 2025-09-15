@@ -37,7 +37,7 @@
 #if _UNITK_SOL_    
 #define PWM_DUTY100 10000
 #else
-#define PWM_DUTY100 100   /* 100% 1000 = 16Kzh */
+#define PWM_DUTY100 62 /* 16Kzh */
 #endif
 
 static uint16_t currPWM[24U];
@@ -266,46 +266,18 @@ void PWM_TurnOffChannelCurrent(void)
 
 void Motor_PWM_SetRatio16(uint32_t Ratio)
 {
-  //uint32_t maxDUTY = (1U << PWM_VALUE_MAX_POS) - MAX_MEASURE_TIME_TICKS - MAX_DEBUNCE_TIME_TICKS - 1U;
-  PWM_Duty_Set = Ratio;
-  
-  currPWM[PHY_CHANNEL_R(0)] = Ratio;
-  currPWM[PHY_CHANNEL_G(0)] = Ratio;
-  currPWM[PHY_CHANNEL_B(0)] = Ratio;
-  
-  
-#if _UNICK_SOL_
-  PWMAUX_SetMatchValue(0x04, 0, Ratio);
-  //PWMAUX_SetMatchValue(0x04, 0, 5000);
-  //PWMAUX_SetMatchValue(0x04, (((uint16_t)10000 - Ratio)>>1U), (uint16_t)((10000 + (uint32_t)Ratio) >> 1U));    
-#endif
-  
-#if _UNICK_COOL_
-  /* set duty cycle to 0*/
-  PWM_SetMatchValue((PwmChannel_t)M_DIS, PWM_DUTY100*mMC33HB2000_Port.mc33hb2000_DIS, PWM_DUTY100);    
-  PWM_SetMatchValue((PwmChannel_t)M_ENLB, PWM_DUTY100*mMC33HB2000_Port.mc33hb2000_ENBL, PWM_DUTY100); 
-  PWM_SetMatchValue((PwmChannel_t)M_IN1, PWM_DUTY100*mMC33HB2000_Port.mc33hb2000_IN1, PWM_DUTY100);
-  
   PWM_SetMatchValue((PwmChannel_t)2, 0, PWM_DUTY100 - Ratio);
-#endif
-  
-  //PWM_SetMatchValue(PHY_CHANNEL_G(0),(((uint16_t)10000 - Ratio)>>1U), (uint16_t)((10000 + (uint32_t)Ratio) >> 1U));
-  //PWM_SetMatchValue(PHY_CHANNEL_B(0),(((uint16_t)10000 - Ratio)>>1U), (uint16_t)((10000 + (uint32_t)Ratio) >> 1U));
-  //PWM_SetMatchValue(PHY_CHANNEL_B(0), ((uint16_t)10000 - MAX_DEBUNCE_TIME_TICKS - PWM_Duty_Set), (uint16_t)10000 - MAX_DEBUNCE_TIME_TICKS);
-  
   PWM_StartAndUpdate();           
 }
 
 void PWM_Module_Init(void)
-{   
-#if _UNICK_COOL_
-  PWM_Init(PWM_PRESCALER_DIVIDE_8, PWM_DUTY100);
-#endif
-
-#if _UNICK_SOL_    
-  PWM_Init(PWM_PRESCALER_DIVIDE_4, PWM_DUTY100);
-#endif
-  
-  (void)PWM_SetLedChannelCurrent();  
+{
+  PWM_Init(PWM_PRESCALER_DIVIDE_16, PWM_DUTY100);
+  for (int i = 0; i < 24; i++)
+  {
+    PWM_SetMatchValue((PwmChannel_t)i, 0, PWM_DUTY100);
+  }
+  PWM_StartAndUpdate();
+  (void)PWM_SetLedChannelCurrent();
 }
 #endif
